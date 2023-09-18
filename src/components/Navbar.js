@@ -31,6 +31,9 @@ export default class Navbar extends Component {
                 <button type="button" className="btn btn-info">
                   Clear Walls
                 </button>
+                <button type="button" className="btn btn-info">
+                  Clear Board
+                </button>
 
                 {/* we can't call directly call visualizeDijkstra  */}
                 <button
@@ -53,12 +56,17 @@ export default class Navbar extends Component {
                   <ul className="dropdown-menu">
                     <li>
                       <a className="dropdown-item" href="#">
-                        A Star
+                        Dijkstra Algorithm
                       </a>
                     </li>
                     <li>
                       <a className="dropdown-item" href="#">
-                        Dijkstra
+                        Depth First Search
+                      </a>
+                    </li>
+                    <li>
+                      <a className="dropdown-item" href="#">
+                        Breadth First Search
                       </a>
                     </li>
                   </ul>
