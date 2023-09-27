@@ -1,5 +1,7 @@
-Welcome to Sorting Visualizer!!
+# Welcome to the Sorting Visualizer
+
 This Sorting visualizer uses differnt sorting algorithms to sort an random array and visualize them in action using algorithm 
+
 You can access it here : https://dhruvp132.github.io/Sorting-Visualizer/
 
 
