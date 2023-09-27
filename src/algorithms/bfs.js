@@ -26,7 +26,7 @@ export function breadthFirst(grid, startNode, finishNode) {
   }
 }
 
-// combination needeed = 1 top 1 right while ( l u l b)
+// combination needeed = 1 top 1 right while ( left up left bottom)
 function getUnvisitedNeighbors(node, grid) {
   const neighbors = [];
   const { col, row, isWall } = node;
