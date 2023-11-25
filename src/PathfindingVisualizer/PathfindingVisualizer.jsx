@@ -41,6 +41,106 @@ export class PathfindingVisualizer extends Component {
     });
   }
 
+  //== Touch Events ==
+  handleTouchStart(event, row, col) {
+    event.preventDefault();
+    if (row === START_NODE_ROW && col === START_NODE_COL) {
+      this.setState({ mouseIsPressedStart: true });
+    } else if (row === FINISH_NODE_ROW && col === FINISH_NODE_COL) {
+      this.setState({ mouseIsPressedFinish: true });
+    } else {
+      //using prevState helps faster
+      // this.setState((prevState) => ({
+      //   grid: getNewGridWithWallToggled(prevState.grid, row, col),
+      //   mouseIsPressed: true,
+      // }));
+      const newGrid = getNewGridWithWallToggled(this.state.grid, row, col);
+      this.setState({ grid: newGrid, mouseIsPressed: true });
+    }
+  }
+
+  handleTouchMove(event, row, col) {
+    event.preventDefault();
+    if (this.state.mouseIsPressedStart) {
+      this.setState((prevState) => {
+        const newGrid = prevState.grid.slice();
+        const startNode = newGrid[row][col];
+        startNode.isStart = true; // Set isStart for the new location
+
+        const previousStartNode =
+          newGrid[prevState.previousStart.row][prevState.previousStart.col];
+        previousStartNode.isStart = false;
+        START_NODE_ROW = row;
+        START_NODE_COL = col;
+
+        const previousStart = { row, col };
+        return {
+          grid: newGrid,
+          previousStart,
+        };
+      });
+    } else if (this.state.mouseIsPressedFinish) {
+      this.setState((prevState) => {
+        const newGrid = prevState.grid.slice();
+        const finishNode = newGrid[row][col];
+        finishNode.isFinish = true; // Set isStart for the new location
+
+        const previousFinishNode =
+          newGrid[prevState.previousFinish.row][prevState.previousFinish.col];
+        previousFinishNode.isFinish = false;
+        FINISH_NODE_ROW = row;
+        FINISH_NODE_COL = col;
+
+        const previousFinish = { row, col };
+        return {
+          grid: newGrid,
+          previousFinish,
+        };
+      });
+    } else if (this.state.mouseIsPressed) {
+      const newGrid = getNewGridWithWallToggled(this.state.grid, row, col);
+      this.setState({ grid: newGrid });
+    } else return;
+  }
+
+  handleTouchEnd(event) {
+    event.preventDefault();
+    if (this.state.mouseIsPressedStart) {
+      this.setState((prevState) => {
+        const newGrid = prevState.grid.slice();
+        const startNode =
+          newGrid[prevState.previousStart.row][prevState.previousStart.col];
+        startNode.isStart = true;
+
+        return {
+          grid: newGrid,
+          mouseIsPressedStart: false,
+        };
+      });
+    } else if (this.state.mouseIsPressedFinish) {
+      this.setState((prevState) => {
+        const newGrid = prevState.grid.slice();
+        const finishNode =
+          newGrid[prevState.previousFinish.row][prevState.previousFinish.col];
+        finishNode.isFinish = true;
+
+        return {
+          grid: newGrid,
+          mouseIsPressedFinish: false,
+        };
+      });
+    } else if (this.state.mouseIsPressed) {
+      this.setState({ mouseIsPressed: false });
+    } else {
+      this.setState({
+        mouseIsPressed: false,
+        mouseIsPressedStart: false,
+        mouseIsPressedFinish: false,
+      });
+    }
+  }
+
+
   //== Mouse Events ==
   handleMouseDown(row, col) {
     if (row === START_NODE_ROW && col === START_NODE_COL) {
@@ -303,6 +403,9 @@ export class PathfindingVisualizer extends Component {
                       isStart={isStart}
                       isWall={isWall}
                       mouseIsPressed={mouseIsPressed}
+                      onTouchStart={(event) => this.handleTouchStart(event, row, col)}
+                      onTouchMove={(event) => this.handleTouchMove(event, row, col)}
+                      onTouchEnd={(event) => this.handleTouchEnd(event)}
                       onMouseDown={(row, col) => this.handleMouseDown(row, col)}
                       onMouseEnter={(row, col) =>
                         this.handleMouseEnter(row, col)

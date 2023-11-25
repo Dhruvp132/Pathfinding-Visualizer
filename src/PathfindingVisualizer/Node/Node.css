@@ -10,6 +10,12 @@
   box-shadow: 10px 5px 5px rgba(72, 18, 189, 0.219);
 }
 
+@media only screen and (max-width: 600px) {
+  .node {
+    width : 10px;
+    height : 22.5px;
+  }
+}
 .node-finish {
   background-position: center;
   background-repeat: no-repeat;
