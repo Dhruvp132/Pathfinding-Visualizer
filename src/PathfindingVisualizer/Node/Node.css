@@ -12,10 +12,11 @@
 
 @media only screen and (max-width: 600px) {
   .node {
-    width : 10px;
-    height : 22.5px;
+    width: 10px;
+    height: 22.5px;
   }
 }
+
 .node-finish {
   background-position: center;
   background-repeat: no-repeat;
@@ -82,22 +83,22 @@
 @keyframes visitedAnimation {
   0% {
     transform: scale(0.3);
-    background: rgba(0, 0, 66, 0.75);
+    background: rgb(0, 0, 0);
     border-radius: 100%;
   }
 
   50% {
-    background: rgba(17, 104, 217, 0.75);
+    background: rgb(200, 0, 255);
   }
 
   75% {
     transform: scale(1.2);
-    background: rgba(0, 217, 159, 0.749);
+    background: rgb(0, 0, 0);
   }
 
   100% {
     transform: scale(1);
-    background: rgba(0, 190, 218, 0.75);
+    background: rgb(49, 3, 58)
   }
 }
 
@@ -148,17 +149,17 @@
 @keyframes shortestPath {
   0% {
     transform: scale(0.6);
-    background: rgb(255, 249, 61);
+    background: rgb(128, 4, 166);
   }
 
   50% {
     transform: scale(1.2);
-    background: rgb(140, 255, 0);
+    background: rgb(0, 0, 0);
   }
 
   100% {
     transform: scale(1);
-    background: rgb(0, 19, 56);
+    background: #FFD700;
   }
 }
 
