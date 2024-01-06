@@ -1,8 +1,8 @@
-# Welcome to the Sorting Visualizer
+# Welcome to the Pathfinding Visualizer
 
-This Sorting visualizer uses differnt sorting algorithms to sort an random array and visualize them in action using algorithm 
+This Pathfinding visualizer uses differnt algorithms to find shortest path between two nodes and visualize them in action using algorithm
 
-You can access it here : https://dhruvp132.github.io/Sorting-Visualizer/
+You can access it here : https://dhruvp132.github.io/Pathfinding-Visualizer/
 
 
 # Getting Started with Create React App
